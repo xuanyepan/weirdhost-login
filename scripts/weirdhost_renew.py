@@ -331,7 +331,7 @@ def is_logged_in(sb):
             return False
         if get_expiry_from_page(sb) != "Unknown":
             return True
-        if sb.is_element_present("//button//span[contains(text(), '시간 추가')]"):
+        if sb.is_element_present("//button//span[contains(text(), '연장하기')]"):
             return True
         return False
     except:
@@ -552,7 +552,7 @@ def check_popup_still_open(sb):
             var buttons = document.querySelectorAll('button');
             for (var i = 0; i < buttons.length; i++) {
                 var text = buttons[i].innerText || '';
-                if (text.includes('시간 추가') && !text.includes('DELETE')) {
+                if (text.includes('연장하기') && !text.includes('DELETE')) {
                     var rect = buttons[i].getBoundingClientRect();
                     if (rect.x > 200 && rect.width > 0) {
                         return true;
@@ -851,9 +851,9 @@ def process_single_account(sb, account, account_index):
         print("\n[步骤4] 点击侧栏续期按钮")
         random_delay(1.0, 2.0)
 
-        sidebar_btn_xpath = "//button//span[contains(text(), '시간 추가')]/parent::button"
+        sidebar_btn_xpath = "//button//span[contains(text(), '연장하기')]/parent::button"
         if not sb.is_element_present(sidebar_btn_xpath):
-            sidebar_btn_xpath = "//button[contains(., '시간 추가')]"
+            sidebar_btn_xpath = "//button[contains(., '연장하기')]"
 
         if not sb.is_element_present(sidebar_btn_xpath):
             screenshot_path = f"{screenshot_prefix}_no_button.png"
